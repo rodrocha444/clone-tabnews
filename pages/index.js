@@ -1,3 +1,3 @@
 export default function Home() {
-  return <h1>Rodrigo Rocha</h1>;
+  return <span style={{backgroundColor: 'red'}}>Rodrigo Rocha</span>;
 }
