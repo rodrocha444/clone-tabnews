@@ -1,9 +1,17 @@
 import database from "infra/database";
 
 export default async function status(req, res) {
-  const result = await database.query("SELECT 1+1 as sum;");
+  const updatedAt = new Date().toISOString()
 
-  console.log(result.rows);
+  const result = await database.query("SHOW server_version;")
+  const dbVersion = result.rows[0].server_version
 
-  res.status(200).send();
+  res.status(200).json({
+    updated_at: updatedAt,
+    dependencies: {
+      database: {
+        version: dbVersion
+      }
+    }
+  });
 }
